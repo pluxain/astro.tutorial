@@ -2,6 +2,8 @@
 
 This website repository resides at https://github.com/pluxain/astro.tutorial
 
+This website is deployed using Netlify and can be reached [here](https://candid-semolina-e10565.netlify.app/).
+
 ## 🧞 Commands
 
 All commands are run from the root of the project, from a terminal:
