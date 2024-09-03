@@ -1,4 +1,5 @@
 ---
+import Navigation from "../components/Navigation.astro";
 import "../styles/global.css";
 
 const pageTitle = "About Me";
@@ -51,19 +52,7 @@ const textCase = "uppercase";
     </style>
   </head>
   <body>
-    <nav>
-      <ol>
-        <li>
-          <a href="/">Home</a>
-        </li>
-        <li>
-          <a href="/blog/">Blog</a>
-        </li>
-        <li>
-          <a href="/about/">About</a>
-        </li>
-      </ol>
-    </nav>
+    <Navigation />
     <h1>{pageTitle}</h1>
     <h2>... and my new Astro site!</h2>
 
