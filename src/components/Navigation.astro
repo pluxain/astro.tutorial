@@ -1,4 +1,4 @@
-<nav>
+<nav class="nav-links">
   <ol>
     <li>
       <a href="/">Home</a>
@@ -23,6 +23,7 @@
 
   ol {
     display: flex;
+    flex-direction: column;
   }
 
   a {
@@ -51,6 +52,10 @@
       position: static;
       width: auto;
       background: none;
+    }
+
+    ol {
+      flex-direction: row;
     }
 
     a {
