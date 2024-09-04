@@ -62,13 +62,39 @@ ol {
   list-style: none;
 }
 
+/* Custom Properties */
+:root {
+  --accent: 255, 151, 118;
+  --accent-bg: rgba(var(--accent), 1);
+  --back: 0, 0, 0;
+  --black-text: rgba(var(--black), 1);
+  --white: 241, 245, 249;
+  --white-bg: rgba(var(--white), 1);
+  --white-text: rgba(var(--white), 1);
+}
+
 /* Styles */
 html {
-  background-color: #f1f5f9;
+  background-color: var(--white-bg);
   font-family: sans-serif;
+}
+
+body {
+  width: 90%;
+  margin: 1rem auto;
+}
+
+@media screen and (min-width: 636px) {
+  body {
+    width: 60%;
+  }
 }
 
 h1 {
   margin: 1rem 0;
   font-size: 2.5rem;
+}
+
+a {
+  color: var(--back-text);
 }
