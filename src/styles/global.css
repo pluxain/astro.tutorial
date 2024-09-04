@@ -57,6 +57,11 @@ h6 {
   overflow-wrap: break-word;
 }
 
+ul,
+ol {
+  list-style: none;
+}
+
 /* Styles */
 html {
   background-color: #f1f5f9;
