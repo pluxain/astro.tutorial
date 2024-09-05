@@ -1,0 +1,28 @@
+---
+import type { URL } from "../types";
+
+type Props = {
+  image: {
+    url: URL;
+    text: string;
+  };
+};
+const { image } = Astro.props;
+---
+
+<div class="hero">
+  <img src={image.url} alt={image.text} />
+</div>
+<style>
+  .hero {
+    width: 60%;
+    display: flex;
+    margin: 1rem auto;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero > img {
+    object-fit: cover;
+  }
+</style>

@@ -16,7 +16,7 @@
     width: 100%;
     top: 5rem;
     left: 48px;
-    background-color: #ff9776;
+    background-color: var(--accent-bg);
     display: none;
     margin: 0;
   }
@@ -29,7 +29,7 @@
   a {
     display: block;
     text-align: center;
-    padding: 10px 0;
+    padding: 0.5rem 0;
     text-decoration: none;
     font-size: 1.2rem;
     font-weight: bold;
@@ -38,7 +38,8 @@
 
   a:hover,
   a:focus {
-    background-color: #ff9776;
+    background-color: var(--accent-bg);
+    color: var(--white-text);
   }
 
   .expanded {
@@ -47,7 +48,7 @@
 
   @media screen and (min-width: 636px) {
     nav {
-      margin-left: 5em;
+      margin-left: 5rem;
       display: block;
       position: static;
       width: auto;
@@ -60,7 +61,7 @@
 
     a {
       display: inline-block;
-      padding: 15px 20px;
+      padding: 0.5rem 1rem;
     }
   }
 </style>
