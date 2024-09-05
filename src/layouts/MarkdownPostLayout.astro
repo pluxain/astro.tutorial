@@ -1,20 +1,7 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import Hero from "../components/Hero.astro";
-
-import type { URL } from "../types";
-
-type MarkdownPostFrontmatter = {
-  author: string;
-  description: string;
-  pubDate: Date;
-  title: string;
-  image?: {
-    url: URL;
-    text: string;
-  };
-  tags?: Array<string>;
-};
+import type { MarkdownPostFrontmatter } from "../types";
 
 type Props = {
   frontmatter: MarkdownPostFrontmatter;
