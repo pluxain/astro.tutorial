@@ -1,9 +1,6 @@
 ---
+import BaseLayout from "./BaseLayout.astro";
 import Hero from "../components/Hero.astro";
-// Remove when using BaseLayout
-import Footer from "../components/Footer.astro";
-import Header from "../components/Header.astro";
-import "../styles/global.css";
 
 import type { URL } from "../types";
 
@@ -26,63 +23,47 @@ type Props = {
 const { frontmatter } = Astro.props;
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{frontmatter.title}</title>
-  </head>
-  <body>
-    <Header />
-
-    <h1>{frontmatter.title}</h1>
-    <p>
-      Written by {frontmatter.author} on {
-        frontmatter.pubDate.toString().slice(0, 10)
-      }
-    </p>
-    {
-      frontmatter.tags && frontmatter.tags?.length > 0 && (
-        <ul class="tags">
-          {frontmatter.tags.map((tag: string) => (
-            <li class="tag">{tag}</li>
-          ))}
-        </ul>
-      )
+<BaseLayout pageTitle={frontmatter.title}>
+  <p>
+    Written by {frontmatter.author} on {
+      frontmatter.pubDate.toString().slice(0, 10)
     }
-    {
-      frontmatter.description && (
-        <p>
-          <em>{frontmatter.description}</em>
-        </p>
-      )
+  </p>
+  {
+    frontmatter.tags && frontmatter.tags?.length > 0 && (
+      <ul class="tags">
+        {frontmatter.tags.map((tag: string) => (
+          <li class="tag">{tag}</li>
+        ))}
+      </ul>
+    )
+  }
+  {
+    frontmatter.description && (
+      <p>
+        <em>{frontmatter.description}</em>
+      </p>
+    )
+  }
+  {frontmatter.image && <Hero image={frontmatter.image} />}
+  <slot />
+  <style>
+    .tags {
+      display: flex;
+      flex-direction: row;
+      gap: 0.5rem;
+      padding: 0.5rem 0;
     }
-    {frontmatter.image && <Hero image={frontmatter.image} />}
-    <slot />
-    <style>
-      .tags {
-        display: flex;
-        flex-direction: row;
-        gap: 0.5rem;
-        padding: 0.5rem 0;
-      }
 
-      .tag {
-        padding: 0.2rem;
-        background-color: var(--accent-bg);
-        color: var(--white-text);
-        border-radius: 0.375rem;
-      }
+    .tag {
+      padding: 0.2rem;
+      background-color: var(--accent-bg);
+      color: var(--white-text);
+      border-radius: 0.375rem;
+    }
 
-      .tag::before {
-        content: "\1F3F7";
-      }
-    </style>
-    <Footer />
-    <script>
-      import "../scripts/menu";
-    </script>
-  </body>
-</html>
+    .tag::before {
+      content: "\1F3F7";
+    }
+  </style>
+</BaseLayout>
