@@ -1,21 +1,35 @@
 ---
 import type { GetStaticPaths } from "astro";
+import type { Post } from "../../types";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import BlogPostList from "../../components/BlogPostList.astro";
 
-export const getStaticPaths = (() => {
+type Props = {
+  posts: Post[];
+};
+
+export const getStaticPaths = (async () => {
+  // @ts-expect-error typing problem with MarkdownInstance
+  const allPosts: Post[] = await Astro.glob("../posts/*.md");
+
   return [
-    { params: { tag: "astro" } },
-    { params: { tag: "successes" } },
-    { params: { tag: "community" } },
-    { params: { tag: "blogging" } },
-    { params: { tag: "setbacks" } },
-    { params: { tag: "learning in public" } },
+    { params: { tag: "astro" }, props: { posts: allPosts } },
+    { params: { tag: "successes" }, props: { posts: allPosts } },
+    { params: { tag: "community" }, props: { posts: allPosts } },
+    { params: { tag: "blogging" }, props: { posts: allPosts } },
+    { params: { tag: "setbacks" }, props: { posts: allPosts } },
+    { params: { tag: "learning in public" }, props: { posts: allPosts } },
   ];
 }) satisfies GetStaticPaths;
 
-const { tag } = Astro.params;
+const { tag } = Astro.params as { tag: string };
+const { posts } = Astro.props;
+const filteredPosts = posts.filter((post: Post) =>
+  post.frontmatter.tags?.includes(tag),
+);
 ---
 
 <BaseLayout pageTitle={tag}>
   <p>Posts tagged with {tag}</p>
+  <BlogPostList posts={filteredPosts} />
 </BaseLayout>
