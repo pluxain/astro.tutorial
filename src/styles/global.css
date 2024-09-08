@@ -98,3 +98,12 @@ h1 {
 a {
   color: var(--back-text);
 }
+/* dark/light theme */
+html.dark {
+  background-color: #0d0950;
+  color: #fff;
+}
+
+.dark .nav-links a {
+  color: #fff;
+}
