@@ -1,0 +1,14 @@
+---
+import type { URL } from "../types";
+
+type Props = {
+  title: string;
+  url: URL;
+};
+
+const { title, url } = Astro.props;
+---
+
+<li>
+  <a href={url}>{title}</a>
+</li>

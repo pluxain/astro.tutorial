@@ -1,0 +1,16 @@
+---
+import type { Post } from "../types";
+import BlogPostListItem from "./BlogPostListItem.astro";
+
+const { posts } = Astro.props;
+---
+
+{
+  posts.length > 0 && (
+    <ul>
+      {posts.map((post: Post) => (
+        <BlogPostListItem title={post.frontmatter.title} url={post.url} />
+      ))}
+    </ul>
+  )
+}

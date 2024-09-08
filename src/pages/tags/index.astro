@@ -1,0 +1,42 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Tag from "../../components/Tag.astro";
+import type { MarkdownPostFrontmatter } from "../../types";
+
+const allPosts = await Astro.glob<MarkdownPostFrontmatter>("../posts/*.md");
+
+const uniqueTags = [
+  ...new Set(
+    allPosts
+      .map((post) => (post.frontmatter.tags ? post.frontmatter.tags : []))
+      .flat(),
+  ),
+];
+
+const pageTitle = "Tags";
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <h2>Find posts by tag!</h2>
+  {
+    uniqueTags.length > 0 && (
+      <ul>
+        {uniqueTags.map((tag) => (
+          <li>
+            <Tag tag={tag} />
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</BaseLayout>
+
+<style>
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0;
+  }
+</style>
