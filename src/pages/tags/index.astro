@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Tag from "../../components/Tag.astro";
 import type { MarkdownPostFrontmatter } from "../../types";
 
 const allPosts = await Astro.glob<MarkdownPostFrontmatter>("../posts/*.md");
@@ -22,7 +23,7 @@ const pageTitle = "Tags";
       <ul>
         {uniqueTags.map((tag) => (
           <li>
-            <a href={`/tags/${tag}`}>{tag}</a>
+            <Tag tag={tag} />
           </li>
         ))}
       </ul>
@@ -36,17 +37,6 @@ const pageTitle = "Tags";
     flex-wrap: wrap;
     gap: 0.5rem;
     margin-top: 1rem;
-  }
-
-  li {
-    border: dotted 1px #a1a1a1;
-    padding: 0.5rem 1rem;
-    font-size: 1.15rem;
-    background-color: var(--white-bg);
-  }
-
-  a {
-    color: rgb(0, 83, 159);
-    text-decoration: none;
+    padding: 0;
   }
 </style>
