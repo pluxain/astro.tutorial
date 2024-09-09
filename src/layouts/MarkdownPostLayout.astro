@@ -1,26 +1,23 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import Hero from "../components/Hero.astro";
-import type { MarkdownPostFrontmatter } from "../types";
 import Tag from "../components/Tag.astro";
+import type { CollectionEntry } from "astro:content";
 
 type Props = {
-  frontmatter: MarkdownPostFrontmatter;
+  data: CollectionEntry<"posts">["data"];
 };
-
-const { frontmatter } = Astro.props;
+const { data } = Astro.props;
 ---
 
-<BaseLayout pageTitle={frontmatter.title}>
+<BaseLayout pageTitle={data.title}>
   <p>
-    Written by {frontmatter.author} on {
-      frontmatter.pubDate.toString().slice(0, 10)
-    }
+    Written by {data.author} on {data.pubDate.toString().slice(0, 10)}
   </p>
   {
-    frontmatter.tags && frontmatter.tags?.length > 0 && (
+    data.tags && data.tags?.length > 0 && (
       <ul class="tags">
-        {frontmatter.tags.map((tag: string) => (
+        {data.tags.map((tag: string) => (
           <li>
             <Tag tag={tag} />
           </li>
@@ -29,13 +26,13 @@ const { frontmatter } = Astro.props;
     )
   }
   {
-    frontmatter.description && (
+    data.description && (
       <p>
-        <em>{frontmatter.description}</em>
+        <em>{data.description}</em>
       </p>
     )
   }
-  {frontmatter.image && <Hero image={frontmatter.image} />}
+  {data.image && <Hero image={data.image} />}
   <slot />
   <style>
     .tags {
