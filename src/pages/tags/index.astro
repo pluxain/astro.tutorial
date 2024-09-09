@@ -1,17 +1,11 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Tag from "../../components/Tag.astro";
-import type { MarkdownPostFrontmatter } from "../../types";
 
-const allPosts = await Astro.glob<MarkdownPostFrontmatter>("../posts/*.md");
+const allPosts = await getCollection("posts");
 
-const uniqueTags = [
-  ...new Set(
-    allPosts
-      .map((post) => (post.frontmatter.tags ? post.frontmatter.tags : []))
-      .flat(),
-  ),
-];
+const uniqueTags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
 
 const pageTitle = "Tags";
 ---
