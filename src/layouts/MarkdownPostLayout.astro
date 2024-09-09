@@ -12,7 +12,9 @@ const { data } = Astro.props;
 
 <BaseLayout pageTitle={data.title}>
   <p>
-    Written by {data.author} on {data.pubDate.toString().slice(0, 10)}
+    Written by {data.author} on <time datetime={data.pubDate.toISOString()}
+      >{data.pubDate.toISOString().slice(0, 10)}</time
+    >
   </p>
   {
     data.tags && data.tags?.length > 0 && (
