@@ -79,3 +79,16 @@
     }
   });
 </script>
+
+<script is:inline>
+  function applyTheme() {
+    if (localStorage.theme === "dark") {
+      document.documentElement.classList.add("dark");
+      return;
+    }
+    document.documentElement.classList.remove("dark");
+  }
+
+  document.addEventListener("astro:after-swap", applyTheme);
+  applyTheme();
+</script>
