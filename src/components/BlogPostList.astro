@@ -1,5 +1,4 @@
 ---
-import type { Post } from "../types";
 import BlogPostListItem from "./BlogPostListItem.astro";
 
 const { posts } = Astro.props;
@@ -8,8 +7,8 @@ const { posts } = Astro.props;
 {
   posts.length > 0 && (
     <ul>
-      {posts.map((post: Post) => (
-        <BlogPostListItem title={post.frontmatter.title} url={post.url} />
+      {posts.map((post: { data: { title: string }; slug: string }) => (
+        <BlogPostListItem title={post.data.title} url={`/posts/${post.slug}`} />
       ))}
     </ul>
   )
