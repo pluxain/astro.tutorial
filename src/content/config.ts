@@ -6,7 +6,7 @@ const postsCollection = defineCollection({
     author: z.string(),
     description: z.string(),
     image: z.object({
-      url: z.string(),
+      url: z.string().url(),
       text: z.string(),
     }),
 
